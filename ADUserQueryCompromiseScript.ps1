@@ -23,7 +23,7 @@ function Domain2 {
     param (
         $UsersDomain2
     )
-    $UsersFFX = Get-Content '.\LeakedUsers.txt' # Defines document location and retrieves the content.
+    $UsersDomain2 = Get-Content '.\LeakedUsers.txt' # Defines document location and retrieves the content.
     Get-ADUser -Server $DNSServer2 -Filter '*' -Properties mail | # Selects every user in AD. Matches SamAccountName Property
         Where-Object { $UsersDomain2 -contains $_.SamAccountName } | #Every user in the text document that matches the email, will get piped.
         Select-Object mail, GivenName, Surname, Enabled | # Pull releveant fields from piped users
